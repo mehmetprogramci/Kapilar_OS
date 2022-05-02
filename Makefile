@@ -1,12 +1,12 @@
 
-GPPARAMS = -m32
+GCCPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore 
 ASPARAMS = --32
 LDPARAMS = -melf_i386
 
 objects = loader.o gdt.o port.o kernel.o
 
 %.o: %.cpp
-	g++ $(GPPARAMS) -o $@ -c $<
+	gcc $(GCCPARAMS) -o $@ -c $<
 	
 %.o: %.s
 	as $(ASPARAMS) -o $@ $<
